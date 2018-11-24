@@ -1,4 +1,9 @@
 class WPPosts extends HTMLElement {
+  constructor () {
+    super()
+    this.attachShadow({ mode: 'open' })
+    this.template = document.getElementById('post').content
+  }
   async connectedCallback () {
     const response = await fetch(`https://public-api.wordpress.com/wp/v2/sites/${this.site}/posts?per_page=${this.perPage}`)
     const data = await response.json()
@@ -19,13 +24,14 @@ class WPPosts extends HTMLElement {
   }
 
   render (data) {
-    let shadow = this.attachShadow({ mode: 'open' })
-    const template = document.getElementById('post')
+    if (!Array.isArray(data)) {
+      return
+    }
     data.map(post => {
-      let article = template.content.cloneNode(true)
+      let article = this.template.cloneNode(true)
       article.querySelector('h1').innerHTML = post.title.rendered
       article.querySelector('div').innerHTML = post.content.rendered
-      shadow.appendChild(article)
+      this.shadowRoot.appendChild(article)
     })
   }
 }
