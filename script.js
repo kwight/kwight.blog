@@ -36,3 +36,7 @@ class WPPosts extends HTMLElement {
   }
 }
 window.customElements.define('wp-posts', WPPosts)
+
+const menu = document.getElementById('menu')
+const close = document.getElementById('close')
+;[menu, close].forEach((el) => el.addEventListener('click', () => [menu, close].forEach((el) => el.classList.toggle('active'))))
