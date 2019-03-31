@@ -23,8 +23,8 @@ class WPPosts extends LitElement {
   render() {
     return html`
       ${this.posts.map((post, index) => html`
-      <h1>${post.title.rendered}</h1>
-    `)}
+        <h1>${post.title.rendered}</h1>
+      `)}
     `;
   }
 }
