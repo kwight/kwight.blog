@@ -92,13 +92,17 @@
 		#menu,
 		#close,
 		#menu-content,
-		#blog-content {
+		#blog-content,
+		#spinner,
+		wp-posts {
 			display: none;
 		}
 
 		#menu.active,
 		#close.active,
-		#blog-content.active {
+		#blog-content.active,
+		#spinner.active,
+		wp-posts.active {
 			display: block;
 		}
 
@@ -110,6 +114,16 @@
 			margin-top: 65px;
 			padding: 0 10px;
 		}
+
+		#spinner {
+			border-radius: 50%;
+			height: 60px;
+			width: 60px;
+			background:
+				linear-gradient(217deg, rgba(250, 200, 99, .9), rgba(250, 200, 99, 0) 80%),
+				linear-gradient(127deg, rgba(249, 145, 87, .9), rgba(249, 145, 87, 0) 80%),
+				linear-gradient(336deg, rgba(236, 95, 103, .9), rgba(236, 95, 103, 0) 80%);
+		}
 	</style>
 </head>
 
@@ -118,8 +132,8 @@
 		<header>
 			<h1>Kirk Wight</h1>
 			<svg id="menu" class="active" viewBox="0 0 24 24">
-				<path fill="none" d="M0 0h24v24H0V0z"/>
-				<path d="M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zm0-5h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zM3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1z"/>
+				<path fill="none" d="M0 0h24v24H0V0z" />
+				<path d="M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zm0-5h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1zM3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1z" />
 			</svg>
 			<svg id="close" viewBox="0 0 24 24">
 				<path fill="none" d="M0 0h24v24H0V0z" />
@@ -168,16 +182,12 @@
 		</ul>
 	</nav>
 	<main id="blog-content" class="active">
-		<wp-posts site="kwight.blog"></wp-posts>
-		<template id="post">
-			<article class="post">
-				<h1 class="post-title"></h1>
-				<div class="post-content"></div>
-			</article>
-		</template>
+		<div id="spinner" class="active"></div>
+		<wp-posts site="kwight.blog" per-page="10"></wp-posts>
 	</main>
 	<footer>
 	</footer>
+
 </body>
 
 </html>
