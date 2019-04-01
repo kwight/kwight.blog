@@ -1,6 +1,6 @@
-export const apiBase = 'https://public-api.wordpress.com/wp/v2'
+const apiBase = 'https://public-api.wordpress.com/wp/v2'
 
-export async function wpcomFetch (site, path, params = {}) {
+async function wpcomFetch (site, path, params = {}) {
   if (!site || !path) {
     return
   }
@@ -9,7 +9,9 @@ export async function wpcomFetch (site, path, params = {}) {
   return response.json()
 }
 
-export function wpcomGetThumbnailUrl (url, params = {}) {
-  const params = new URLSearchParams(params)
+function wpcomGetThumbnailUrl (url, params = {}) {
+  params = new URLSearchParams(params)
   return `${url}/?${params}`
 }
+
+export { apiBase, wpcomFetch, wpcomGetThumbnailUrl }
