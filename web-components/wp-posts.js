@@ -1,32 +1,32 @@
-import { LitElement, html } from 'lit-element';
-import { wpcomFetch } from '../utils/wpcom-fetch';
+import { LitElement, html } from 'lit-element'
+import { wpcomFetch } from '../utils/wpcom-fetch'
 
 class WPPosts extends LitElement {
-  constructor() {
-    super();
-    this.posts = [];
+  constructor () {
+    super()
+    this.posts = []
   }
 
-  static get properties() {
+  static get properties () {
     return {
       site: { type: String },
       'per-page': { type: Number },
-      posts: { type: Array },
-    };
+      posts: { type: Array }
+    }
   }
 
-  async connectedCallback() {
-    super.connectedCallback();
-    this.posts = await wpcomFetch(this.site, 'posts', { 'per-page': this['per-page'] });
+  async connectedCallback () {
+    super.connectedCallback()
+    this.posts = await wpcomFetch(this.site, 'posts', { 'per-page': this['per-page'] })
   }
 
-  render() {
+  render () {
     return html`
       ${this.posts.map((post, index) => html`
         <h1>${post.title.rendered}</h1>
       `)}
-    `;
+    `
   }
 }
 
-customElements.define('wp-posts', WPPosts);
+customElements.define('wp-posts', WPPosts)
