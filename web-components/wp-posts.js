@@ -24,7 +24,7 @@ class WPPosts extends LitElement {
   render () {
     return html`
       ${this.posts.map((post, index) => html`
-        <wp-post post="${JSON.stringify(post)}" view="list"></wp-post>
+        <wp-post view="list" .post=${post}></wp-post>
       `)}
     `
   }
