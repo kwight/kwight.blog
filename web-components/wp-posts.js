@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit-element'
 import { wpcomFetch } from '../utils/wpcom-fetch'
+import './wp-post'
 
 class WPPosts extends LitElement {
   constructor () {
@@ -23,7 +24,7 @@ class WPPosts extends LitElement {
   render () {
     return html`
       ${this.posts.map((post, index) => html`
-        <h1>${post.title.rendered}</h1>
+        <wp-post post="${JSON.stringify(post)}" view="list"></wp-post>
       `)}
     `
   }
