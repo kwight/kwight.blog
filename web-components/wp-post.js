@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit-element'
 import { wpcomGetThumbnailUrl } from '../utils/wpcom'
+import { getHumanReadableTimestamp } from '../utils/time'
 
 const thumbnailParams = { resize: '300,300' }
 
@@ -26,8 +27,8 @@ class WPPost extends LitElement {
     return html`
       <article>
         ${this.renderThumbnail()}
+        <p>${getHumanReadableTimestamp(this.post.date)}</p>
         <h1>${this.post.title && this.post.title.rendered}</h1>
-        <p>${this.post.excerpt && this.post.excerpt.rendered}</p>
       </article>
     `
   }
