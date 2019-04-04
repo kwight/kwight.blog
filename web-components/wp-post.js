@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element'
 import { wpcomGetThumbnailUrl } from '../utils/wpcom'
 
-const thumbnailParams = { w: 200, h: 200 }
+const thumbnailParams = { resize: '300,300' }
 
 class WPPost extends LitElement {
   constructor () {
