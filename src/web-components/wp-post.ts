@@ -1,4 +1,4 @@
-import { LitElement, html } from './lit-element'
+import { LitElement, html } from 'lit-element'
 import { wpcomGetThumbnailUrl } from '../utils/wpcom'
 import { getHumanReadableTimestamp } from '../utils/time'
 
