@@ -1,29 +1,33 @@
-import { LitElement, html } from 'lit-element'
+import { LitElement, html } from './lit-element'
 import { wpcomGetThumbnailUrl } from '../utils/wpcom'
 import { getHumanReadableTimestamp } from '../utils/time'
 
 const thumbnailParams = { resize: '300,300' }
 
 class WPPost extends LitElement {
-  constructor () {
+  post: {
+    jetpack_featured_media_url: string
+  };
+  view: string;
+  constructor() {
     super()
     this.post = {},
-    this.view = 'single'
+      this.view = 'single'
   }
 
-  static get properties () {
+  static get properties() {
     return {
       post: { type: Object },
       view: { type: String }
     }
   }
 
-  renderThumbnail () {
+  renderThumbnail() {
     const thumbnailUrl = this.post.jetpack_featured_media_url
     return thumbnailUrl && html`<img src=${wpcomGetThumbnailUrl(thumbnailUrl, thumbnailParams)} />`
   }
 
-  renderListView () {
+  renderListView() {
     return html`
       <article>
         ${this.renderThumbnail()}
@@ -33,7 +37,7 @@ class WPPost extends LitElement {
     `
   }
 
-  renderSingleView () {
+  renderSingleView() {
     return html`
       <article>
         <img src="" />
@@ -43,7 +47,7 @@ class WPPost extends LitElement {
     `
   }
 
-  render () {
+  render() {
     return this.view === 'list' ? this.renderListView() : this.renderSingleView()
   }
 }
