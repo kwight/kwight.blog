@@ -1,6 +1,0 @@
-web:
-  image: nginx:alpine
-  volumes:
-   - .:/usr/share/nginx/html
-  ports:
-   - 80:80
