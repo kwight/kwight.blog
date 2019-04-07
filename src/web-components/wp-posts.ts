@@ -3,9 +3,14 @@ import { wpcomFetch } from '../utils/wpcom'
 import './wp-post'
 
 class WPPosts extends LitElement {
+  'per-page': number
+  posts: Array<Object>
+  site: string
+
   constructor() {
     super()
     this.posts = []
+    this.site = ''
   }
 
   static get properties() {
@@ -23,7 +28,7 @@ class WPPosts extends LitElement {
 
   render() {
     return html`
-      ${this.posts.map((post, index) => html`
+      ${this.posts.map((post) => html`
         <wp-post view="list" .post=${post}></wp-post>
       `)}
     `

@@ -6,13 +6,26 @@ const thumbnailParams = { resize: '300,300' }
 
 class WPPost extends LitElement {
   post: {
-    jetpack_featured_media_url: string
-  };
-  view: string;
+    jetpack_featured_media_url?: string,
+    date: string,
+    excerpt: {
+      rendered?: string
+    }
+    title: {
+      rendered?: string
+    }
+  }
+
+  view: string
+
   constructor() {
     super()
-    this.post = {},
-      this.view = 'single'
+    this.post = {
+      date: '',
+      excerpt: {},
+      title: {}
+    }
+    this.view = 'single'
   }
 
   static get properties() {

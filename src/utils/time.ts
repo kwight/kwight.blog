@@ -1,4 +1,4 @@
-export function getHumanReadableTimestamp(timestamp: string) {
+export function getHumanReadableTimestamp(timestamp: string): string {
   return new Date(timestamp)
     .toLocaleString(undefined, {
       day: 'numeric',

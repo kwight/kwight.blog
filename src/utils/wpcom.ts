@@ -1,6 +1,6 @@
 const apiBase = 'https://public-api.wordpress.com/wp/v2'
 
-async function wpcomFetch (site, path, params) {
+async function wpcomFetch(site: string, path: string, params: {}) {
   if (!site || !path) {
     return
   }
@@ -12,7 +12,7 @@ async function wpcomFetch (site, path, params) {
   return response.json()
 }
 
-function wpcomGetThumbnailUrl (url, params) {
+function wpcomGetThumbnailUrl(url: string, params: {}) {
   url = url.replace(/\/$/, '')
   if (params) {
     url = `${url}?${new URLSearchParams(params)}`
