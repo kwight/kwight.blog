@@ -44,8 +44,10 @@ class WPPost extends LitElement {
     return html`
       <article>
         ${this.renderThumbnail()}
-        <p>${getHumanReadableTimestamp(this.post.date)}</p>
-        <h1>${this.post.title && this.post.title.rendered}</h1>
+        <div>
+          <p>${getHumanReadableTimestamp(this.post.date)}</p>
+          <h1>${this.post.title && this.post.title.rendered}</h1>
+        </div>
       </article>
     `
   }

@@ -61,7 +61,8 @@ wp-posts.active {
 body,
 header,
 #menu-content.active,
-#menu-content li {
+#menu-content li,
+article {
     display: flex;
 }
 
