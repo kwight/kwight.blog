@@ -15,6 +15,9 @@ class WPPost extends LitElement {
     title: {
       rendered?: string
     }
+    content: {
+      rendered?: string
+    }
   }
 
   view: string
@@ -24,7 +27,8 @@ class WPPost extends LitElement {
     this.post = {
       date: '',
       excerpt: {},
-      title: {}
+      title: {},
+      content: {}
     }
     this.view = 'single'
   }
