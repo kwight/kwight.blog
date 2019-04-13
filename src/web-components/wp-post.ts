@@ -1,4 +1,5 @@
 import { LitElement, html } from 'lit-element'
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
 import { wpcomGetThumbnailUrl } from '../utils/wpcom'
 import { getHumanReadableTimestamp } from '../utils/time'
 
@@ -46,7 +47,7 @@ class WPPost extends LitElement {
         ${this.renderThumbnail()}
         <div>
           <p>${getHumanReadableTimestamp(this.post.date)}</p>
-          <h1>${this.post.title && this.post.title.rendered}</h1>
+          <h1>${this.post.title && unsafeHTML(this.post.title.rendered)}</h1>
         </div>
       </article>
     `
@@ -57,7 +58,7 @@ class WPPost extends LitElement {
       <article>
         <img src="" />
         <h1>${this.post.title.rendered}</h1>
-        <p>${this.post.excerpt.rendered}</p>
+        <p>${unsafeHTML(this.post.content.rendered)}</p>
       </article>
     `
   }
