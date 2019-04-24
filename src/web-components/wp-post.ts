@@ -40,17 +40,38 @@ class WPPost extends LitElement {
     }
   }
 
+  insertStyles() {
+    return html`
+      <style>
+        article {
+          display: flex;
+        }
+        img {
+          border-radius: 50%;
+          flex: 1;
+        }
+        div {
+          flex: 3;
+        }
+        .timestamp {
+          text-transform: uppercase;
+        }
+      </style>
+    `
+  }
+
   renderThumbnail() {
     const thumbnailUrl = this.post.jetpack_featured_media_url
-    return thumbnailUrl && html`<img src=${wpcomGetThumbnailUrl(thumbnailUrl, thumbnailParams)} />`
+    return thumbnailUrl && html`<img class="thumbnail" src=${wpcomGetThumbnailUrl(thumbnailUrl, thumbnailParams)} />`
   }
 
   renderListView() {
     return html`
+      ${this.insertStyles()}
       <article>
         ${this.renderThumbnail()}
         <div>
-          <p>${getHumanReadableTimestamp(this.post.date)}</p>
+          <p class="timestamp">${getHumanReadableTimestamp(this.post.date)}</p>
           <h1>${this.post.title && unsafeHTML(this.post.title.rendered)}</h1>
         </div>
       </article>
