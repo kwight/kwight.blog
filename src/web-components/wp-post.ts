@@ -1,7 +1,7 @@
 import { LitElement, html } from 'lit-element'
 import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
-import { wpcomGetThumbnailUrl } from '../utils/wpcom'
-import { getHumanReadableTimestamp } from '../utils/time'
+import { wpcomGetThumbnailUrl } from '../lib/wpcom'
+import { getHumanReadableTimestamp } from '../lib/util'
 
 const thumbnailParams = { resize: '300,300' }
 

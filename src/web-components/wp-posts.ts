@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit-element'
-import { wpcomFetch } from '../utils/wpcom'
+import { wpcomFetch } from '../lib/wpcom'
 import './wp-post'
 
 class WPPosts extends LitElement {
