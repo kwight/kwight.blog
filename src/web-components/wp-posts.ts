@@ -1,22 +1,21 @@
-import { LitElement, html, customElement, property } from 'lit-element'
 import { wpcomFetch } from '../lib/wpcom'
 import './wp-post'
 
-@customElement('wp-posts')
-class WPPosts extends LitElement {
-  @property({ type: Array })
-  posts = []
+const blogContent = document.getElementById('blog-content')
 
+class WPPosts extends HTMLElement {
   async connectedCallback() {
-    super.connectedCallback()
-    this.posts = await wpcomFetch('kwight.blog', 'posts')
+    const posts = await wpcomFetch('kwight.blog', 'posts')
+    this.render(posts)
   }
 
-  render() {
-    return html`
-      ${this.posts.map((post) => html`
-        <wp-post view="list" .post=${post}></wp-post>
-      `)}
-    `
+  render(data: Array<object>) {
+    data.map(post => {
+      let article = document.createElement('wp-post')
+      article.setAttribute('view', 'list')
+      article.setAttribute('post', JSON.stringify(post))
+      blogContent!.appendChild(article)
+    })
   }
 }
+customElements.define('wp-posts', WPPosts)
