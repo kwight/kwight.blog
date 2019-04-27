@@ -4,27 +4,12 @@ import './wp-post'
 
 @customElement('wp-posts')
 class WPPosts extends LitElement {
-  'per-page': number
-  posts: Array<Object>
-  site: string
-
-  constructor() {
-    super()
-    this.posts = []
-    this.site = ''
-  }
-
-  static get properties() {
-    return {
-      site: { type: String },
-      'per-page': { type: Number },
-      posts: { type: Array }
-    }
-  }
+  @property({ type: Array })
+  posts = []
 
   async connectedCallback() {
     super.connectedCallback()
-    this.posts = await wpcomFetch(this.site, 'posts', { 'per-page': this['per-page'] })
+    this.posts = await wpcomFetch('kwight.blog', 'posts')
   }
 
   render() {
