@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit-element'
-import { unsafeHTML } from 'lit-html/directives/unsafe-html.js';
+import { unsafeHTML } from 'lit-html/directives/unsafe-html.js'
 import { wpcomGetThumbnailUrl } from '../lib/wpcom'
 import { getHumanReadableTimestamp } from '../lib/util'
 
