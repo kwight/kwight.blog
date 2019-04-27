@@ -1,7 +1,8 @@
-import { LitElement, html } from 'lit-element'
+import { LitElement, html, customElement, property } from 'lit-element'
 import { wpcomFetch } from '../lib/wpcom'
 import './wp-post'
 
+@customElement('wp-posts')
 class WPPosts extends LitElement {
   'per-page': number
   posts: Array<Object>
@@ -34,5 +35,3 @@ class WPPosts extends LitElement {
     `
   }
 }
-
-customElements.define('wp-posts', WPPosts)
