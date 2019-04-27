@@ -1,6 +1,6 @@
 const apiBase = 'https://public-api.wordpress.com/wp/v2'
 
-async function wpcomFetch(site: string, path: string, params: {}) {
+async function wpcomFetch(site: string, path: string, params?: {}) {
   if (!site || !path) {
     return
   }
