@@ -69,7 +69,6 @@ class WPPost extends LitElement {
     return html`
       ${this.insertStyles()}
       <article>
-        ${this.renderThumbnail()}
         <div>
           <p class="timestamp">${getHumanReadableTimestamp(this.post.date)}</p>
           <h1>${this.post.title && unsafeHTML(this.post.title.rendered)}</h1>

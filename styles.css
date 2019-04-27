@@ -70,8 +70,7 @@ article {
 #close,
 #menu-content,
 #blog-content,
-#spinner,
-wp-posts {
+#spinner {
     display: none;
 }
 
