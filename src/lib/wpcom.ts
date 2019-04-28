@@ -17,9 +17,12 @@ export async function wpcomFetch(params: WPcomParams) {
     url = `${url}?${new URLSearchParams(search)}`
   }
 
-  const response = await fetch(url)
-
-  return response.json()
+  try {
+    const response = await fetch(url)
+    return response.json()
+  } catch (error) {
+    return error
+  }
 }
 
 export function wpcomGetThumbnailUrl(url: string, params: {}) {
