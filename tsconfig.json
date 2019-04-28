@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "alwaysStrict": true,
-    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "noImplicitReturns": true,
