@@ -1,15 +1,27 @@
-import { getAttributesByPath } from './lib/util'
+import { getParamsByPath } from './lib/util'
+import { wpcomFetch, WPcomParams } from './lib/wpcom'
 
 const menu = document.getElementById('menu')
 const close = document.getElementById('close')
 const navigation = document.getElementById('menu-content')
 const main = document.getElementById('blog-content')
-  ;[menu, close].forEach((el) => el!.addEventListener('click', () => [menu, close, navigation, main].forEach((el) => el!.classList.toggle('active'))))
 
-const wpPosts = document.createElement('wp-posts')
-const wpPost = document.createElement('wp-post')
-const attr = getAttributesByPath(location.pathname)
-
-if (main) {
-  main.appendChild('list' === attr.view ? wpPosts : wpPost)
+function initMenu() {
+  [menu, close].forEach((el) => el!.addEventListener('click', () => [menu, close, navigation, main].forEach((el) => el!.classList.toggle('active'))))
 }
+
+async function fetchContent(params: WPcomParams) {
+  if (!main) {
+    return
+  }
+  const content = await wpcomFetch(params)
+  content.map((post: object) => {
+    let article = document.createElement('wp-post')
+    article.setAttribute('view', 'list')
+    article.setAttribute('post', JSON.stringify(post))
+    main.appendChild(article)
+  })
+}
+
+initMenu()
+fetchContent(getParamsByPath(location.pathname))
