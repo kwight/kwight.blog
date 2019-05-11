@@ -1,6 +1,14 @@
 import { getParamsByPath } from './lib/util'
 import { wpcomFetch, WPcomParams } from './lib/wpcom'
 
+declare global {
+  interface Window { kwightBlog: any; }
+}
+
+window.kwightBlog = {}
+window.kwightBlog.wpcomFetch = wpcomFetch
+window.kwightBlog.getParamsByPath = getParamsByPath
+
 const menu = document.getElementById('menu')
 const close = document.getElementById('close')
 const navigation = document.getElementById('menu-content')
