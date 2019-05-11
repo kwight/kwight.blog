@@ -14,7 +14,7 @@ export function getHumanReadableTimestamp(timestamp: string): string {
 export function getParamsByPath(path: string): WPcomParams {
   const baseParams = {
     site: 'kwight.blog',
-    path: 'posts',
+    path: '/posts',
   }
   switch (true) {
     case '/2018/08/15/til-auto-input-yes-no-anything-to-command-prompts' === path:
