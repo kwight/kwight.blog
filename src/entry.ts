@@ -14,6 +14,7 @@ const menu = document.getElementById('menu')
 const close = document.getElementById('close')
 const navigation = document.getElementById('menu-content')
 const main = document.getElementById('blog-content')
+const spinner = document.getElementById('spinner')
 const params = getParamsByPath(location.pathname)
 
 function initMenu() {
@@ -25,6 +26,7 @@ async function fetchContent(params: WPcomParams) {
     return
   }
   const content = await wpcomFetch(params)
+  spinner!.classList.toggle('active')
   content.map((post: object) => {
     let article = document.createElement('wp-post')
     article.setAttribute('view', params.slug ? 'single' : 'list')
