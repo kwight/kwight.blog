@@ -12,11 +12,13 @@ class WPPost extends HTMLElement {
 
   getListTemplate() {
     return `
-      <article class="post">
-        <img class="post-thumbnail" />
-        <p class="post-published"></p>
-        <h1 class="post-title"></h1>
-      </article>
+      <a>
+        <article class="post">
+          <img class="post-thumbnail" />
+          <p class="post-published"></p>
+          <h1 class="post-title"></h1>
+        </article>
+      </a>
     `
   }
 
@@ -24,15 +26,11 @@ class WPPost extends HTMLElement {
     return `
       <article class="post">
         <img class="post-thumbnail" />
+        <p class="post-published"></p>
         <h1 class="post-title"></h1>
         <div class="post-content"></div>
       </article>
     `
-  }
-
-  renderThumbnail() {
-    // const thumbnailUrl = this.post.jetpack_featured_media_url
-    // return thumbnailUrl && html`<img class="thumbnail" src=${wpcomGetThumbnailUrl(thumbnailUrl, thumbnailParams)} />`
   }
 
   renderListView() {
@@ -41,18 +39,28 @@ class WPPost extends HTMLElement {
       return
     }
     const post = JSON.parse(attr)
+    const thumbnailUrl = post.jetpack_featured_media_url
+    if (thumbnailUrl) {
+      this.querySelector('.post-thumbnail')!.setAttribute('src', wpcomGetThumbnailUrl(thumbnailUrl, thumbnailParams))
+    }
+    this.querySelector('a')!.setAttribute('href', post.link)
     this.querySelector('.post-published')!.innerHTML = getHumanReadableTimestamp(post.date)
     this.querySelector('.post-title')!.innerHTML = post.title.rendered
   }
 
   renderSingleView() {
-    // return html`
-    //   <article>
-    //     <img src="" />
-    //     <h1>${this.post.title.rendered}</h1>
-    //     <p>${unsafeHTML(this.post.content.rendered)}</p>
-    //   </article>
-    // `
+    const attr = this.getAttribute('post')
+    if (!attr) {
+      return
+    }
+    const post = JSON.parse(attr)
+    const thumbnailUrl = post.jetpack_featured_media_url
+    if (thumbnailUrl) {
+      this.querySelector('.post-thumbnail')!.setAttribute('src', wpcomGetThumbnailUrl(thumbnailUrl, featuredImageParams))
+    }
+    this.querySelector('.post-published')!.innerHTML = getHumanReadableTimestamp(post.date)
+    this.querySelector('.post-title')!.innerHTML = post.title.rendered
+    this.querySelector('.post-content')!.innerHTML = post.content.rendered
   }
 
   render() {
