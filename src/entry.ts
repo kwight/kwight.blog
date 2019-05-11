@@ -14,6 +14,7 @@ const menu = document.getElementById('menu')
 const close = document.getElementById('close')
 const navigation = document.getElementById('menu-content')
 const main = document.getElementById('blog-content')
+const params = getParamsByPath(location.pathname)
 
 function initMenu() {
   [menu, close].forEach((el) => el!.addEventListener('click', () => [menu, close, navigation, main].forEach((el) => el!.classList.toggle('active'))))
@@ -26,11 +27,11 @@ async function fetchContent(params: WPcomParams) {
   const content = await wpcomFetch(params)
   content.map((post: object) => {
     let article = document.createElement('wp-post')
-    article.setAttribute('view', 'list')
+    article.setAttribute('view', params.slug ? 'single' : 'list')
     article.setAttribute('post', JSON.stringify(post))
     main.appendChild(article)
   })
 }
 
 initMenu()
-fetchContent(getParamsByPath(location.pathname))
+fetchContent(params)
