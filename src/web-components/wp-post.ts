@@ -4,8 +4,24 @@ import { getHumanReadableTimestamp } from '../lib/util'
 const thumbnailParams = { resize: '300,300' }
 const featuredImageParams = { resize: '1200,1200' }
 
+export interface Post {
+  title: {
+    rendered: string,
+  },
+  jetpack_featured_media_url: string,
+  link: string,
+  date: string,
+  content: {
+    rendered: string,
+  },
+}
+
 class WPPost extends HTMLElement {
+  post!: Post;
+
   connectedCallback() {
+    const attr = this.getAttribute('post') || ''
+    this.post = JSON.parse(attr)
     this.innerHTML = 'single' === this.getAttribute('view') ? this.getSingleTemplate() : this.getListTemplate()
     this.render()
   }
@@ -34,33 +50,23 @@ class WPPost extends HTMLElement {
   }
 
   renderListView() {
-    const attr = this.getAttribute('post')
-    if (!attr) {
-      return
-    }
-    const post = JSON.parse(attr)
-    const thumbnailUrl = post.jetpack_featured_media_url
+    const thumbnailUrl = this.post.jetpack_featured_media_url
     if (thumbnailUrl) {
       this.querySelector('.post-thumbnail')!.setAttribute('src', wpcomGetThumbnailUrl(thumbnailUrl, thumbnailParams))
     }
-    this.querySelector('a')!.setAttribute('href', post.link)
-    this.querySelector('.post-published')!.innerHTML = getHumanReadableTimestamp(post.date)
-    this.querySelector('.post-title')!.innerHTML = post.title.rendered
+    this.querySelector('a')!.setAttribute('href', this.post.link)
+    this.querySelector('.post-published')!.innerHTML = getHumanReadableTimestamp(this.post.date)
+    this.querySelector('.post-title')!.innerHTML = this.post.title.rendered
   }
 
   renderSingleView() {
-    const attr = this.getAttribute('post')
-    if (!attr) {
-      return
-    }
-    const post = JSON.parse(attr)
-    const thumbnailUrl = post.jetpack_featured_media_url
+    const thumbnailUrl = this.post.jetpack_featured_media_url
     if (thumbnailUrl) {
       this.querySelector('.post-thumbnail')!.setAttribute('src', wpcomGetThumbnailUrl(thumbnailUrl, featuredImageParams))
     }
-    this.querySelector('.post-published')!.innerHTML = getHumanReadableTimestamp(post.date)
-    this.querySelector('.post-title')!.innerHTML = post.title.rendered
-    this.querySelector('.post-content')!.innerHTML = post.content.rendered
+    this.querySelector('.post-published')!.innerHTML = getHumanReadableTimestamp(this.post.date)
+    this.querySelector('.post-title')!.innerHTML = this.post.title.rendered
+    this.querySelector('.post-content')!.innerHTML = this.post.content.rendered
   }
 
   render() {
