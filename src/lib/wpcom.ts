@@ -17,7 +17,11 @@ export async function wpcomFetch(params: WPcomParams) {
 
   try {
     const response = await fetch(url)
-    return response.json()
+    if (!response.ok) {
+      throw Error(response.statusText)
+    } else {
+      return response.json()
+    }
   } catch (error) {
     return error
   }
