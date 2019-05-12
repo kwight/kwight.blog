@@ -5,15 +5,11 @@ const thumbnailParams = { resize: '300,300' }
 const featuredImageParams = { resize: '1200,1200' }
 
 export interface Post {
-  title: {
-    rendered: string,
-  },
-  jetpack_featured_media_url: string,
-  link: string,
+  content: string,
   date: string,
-  content: {
-    rendered: string,
-  },
+  'featured_image': string,
+  link: string,
+  title: string,
 }
 
 class WPPost extends HTMLElement {
@@ -50,23 +46,23 @@ class WPPost extends HTMLElement {
   }
 
   renderListView() {
-    const thumbnailUrl = this.post.jetpack_featured_media_url
+    const thumbnailUrl = this.post.featured_image
     if (thumbnailUrl) {
       this.querySelector('.post-thumbnail')!.setAttribute('src', wpcomGetThumbnailUrl(thumbnailUrl, thumbnailParams))
     }
     this.querySelector('a')!.setAttribute('href', this.post.link)
     this.querySelector('.post-published')!.innerHTML = getHumanReadableTimestamp(this.post.date)
-    this.querySelector('.post-title')!.innerHTML = this.post.title.rendered
+    this.querySelector('.post-title')!.innerHTML = this.post.title
   }
 
   renderSingleView() {
-    const thumbnailUrl = this.post.jetpack_featured_media_url
+    const thumbnailUrl = this.post.featured_image
     if (thumbnailUrl) {
       this.querySelector('.post-thumbnail')!.setAttribute('src', wpcomGetThumbnailUrl(thumbnailUrl, featuredImageParams))
     }
     this.querySelector('.post-published')!.innerHTML = getHumanReadableTimestamp(this.post.date)
-    this.querySelector('.post-title')!.innerHTML = this.post.title.rendered
-    this.querySelector('.post-content')!.innerHTML = this.post.content.rendered
+    this.querySelector('.post-title')!.innerHTML = this.post.title
+    this.querySelector('.post-content')!.innerHTML = this.post.content
   }
 
   render() {
