@@ -38,17 +38,27 @@ function renderNoResults() {
   if (!main) {
     return
   }
-  const noResults = document.createElement('span')
+
+  const noResults = document.createElement('div')
+  noResults.className = 'no-results'
+  noResults.innerHTML = `
+    <h1>No results found.</h1>
+    <p> 🤷‍♀️</p>
+  `
   main.appendChild(noResults)
 }
 
-function renderError(error: { message: string }) {
+function renderError(error: Error) {
   if (!main) {
     return
   }
-  const oops = document.createElement('span')
-  oops.className = 'fetch-error'
-  oops.innerText = `Error 😱: ${error.message}`
+
+  const oops = document.createElement('div')
+  oops.className = 'error'
+  oops.innerHTML = `
+    <h1>${error.name} 😱: ${error.message}</h1>
+    <p>Oops, something went wrong. Totally <em>not our fault</em>. Please refresh to try again.</p>
+  `
   main.appendChild(oops)
 }
 
@@ -60,14 +70,9 @@ async function fetchContent(params: WPcomParams) {
     const content = await wpcomFetch(params)
     spinner.classList.toggle('active')
 
-    if (content && content.message) {
-      renderError(content)
-      return
-    }
-
-    if (Array.isArray(content)) {
-      if (content.length > 0) {
-        renderContent(content)
+    if (content.posts) {
+      if (content.posts.length > 0) {
+        renderContent(content.posts)
       } else {
         renderNoResults()
       }
@@ -75,7 +80,7 @@ async function fetchContent(params: WPcomParams) {
       throw Error('Unexpected response')
     }
   } catch (error) {
-    console.error(error)
+    renderError(error)
   }
 }
 
