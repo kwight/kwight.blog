@@ -1,18 +1,19 @@
 export interface WPcomParams {
-  site: string,
+  fields?: string,
   path: string,
-  slug?: string,
   search?: string,
+  site: string,
+  slug?: string,
 }
 
 export async function wpcomFetch(params: WPcomParams) {
   const { site, path, slug, search } = params
 
-  let url = `https://public-api.wordpress.com/wp/v2/sites/${site}${path.replace(/\/$/, '')}`
+  let url = `https://public-api.wordpress.com/rest/v1.1/sites/${site}${path.replace(/\/$/, '')}`
   if (slug) {
-    url = `${url}?slug=${params.slug}`
+    url = `${url}/:slug=${params.slug}`
   } else if (search) {
-    url = `${url}?search=${params.search}`
+    url = `${url}/?search=${params.search}`
   }
 
   try {
