@@ -1,5 +1,5 @@
 import { wpcomGetThumbnailUrl } from '../lib/wpcom'
-import { getHumanReadableTimestamp } from '../lib/util'
+import { getHumanReadableTimestamp, getSecureUrl } from '../lib/util'
 
 const thumbnailParams = { resize: '300,300' }
 const featuredImageParams = { resize: '1200,1200' }
@@ -8,7 +8,7 @@ export interface Post {
   content: string,
   date: string,
   'featured_image': string,
-  link: string,
+  URL: string,
   title: string,
 }
 
@@ -50,7 +50,7 @@ class WPPost extends HTMLElement {
     if (thumbnailUrl) {
       this.querySelector('.post-thumbnail')!.setAttribute('src', wpcomGetThumbnailUrl(thumbnailUrl, thumbnailParams))
     }
-    this.querySelector('a')!.setAttribute('href', this.post.link)
+    this.querySelector('a')!.setAttribute('href', getSecureUrl(this.post.URL))
     this.querySelector('.post-published')!.innerHTML = getHumanReadableTimestamp(this.post.date)
     this.querySelector('.post-title')!.innerHTML = this.post.title
   }

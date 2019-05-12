@@ -80,3 +80,13 @@ export function getParamsByPath(path: string): WPcomParams {
       return baseParams
   }
 }
+
+export function getSecureUrl(url: string) {
+  try {
+    const secureUrl = new URL(url)
+    secureUrl.protocol = 'https'
+    return secureUrl.href
+  } catch (error) {
+    return ''
+  }
+}
