@@ -1,5 +1,6 @@
 import { getParamsByPath } from './lib/util'
 import { wpcomFetch, wpcomGetThumbnailUrl, WPcomParams } from './lib/wpcom'
+import { Post } from './web-components/wp-post'
 
 declare global {
   interface Window { kwightBlog: any; }
@@ -21,13 +22,11 @@ function initMenu() {
   [menu, close].forEach((el) => el!.addEventListener('click', () => [menu, close, navigation, main].forEach((el) => el!.classList.toggle('active'))))
 }
 
-async function fetchContent(params: WPcomParams) {
+function renderContent(posts: Array<Post>) {
   if (!main) {
     return
   }
-  const content = await wpcomFetch(params)
-  spinner!.classList.toggle('active')
-  content.map((post: object) => {
+  posts.map((post: object) => {
     let article = document.createElement('wp-post')
     article.setAttribute('view', params.slug ? 'single' : 'list')
     article.setAttribute('post', JSON.stringify(post))
@@ -35,5 +34,51 @@ async function fetchContent(params: WPcomParams) {
   })
 }
 
+function renderNoResults() {
+  if (!main) {
+    return
+  }
+  const noResults = document.createElement('span')
+  main.appendChild(noResults)
+}
+
+function renderError(error: { message: string }) {
+  if (!main) {
+    return
+  }
+  const oops = document.createElement('span')
+  oops.className = 'fetch-error'
+  oops.innerText = `Error 😱: ${error.message}`
+  main.appendChild(oops)
+}
+
+async function fetchContent(params: WPcomParams) {
+  if (!main || !spinner) {
+    return
+  }
+  try {
+    const content = await wpcomFetch(params)
+    spinner.classList.toggle('active')
+
+    if (content && content.message) {
+      renderError(content)
+      return
+    }
+
+    if (Array.isArray(content)) {
+      if (content.length > 0) {
+        renderContent(content)
+      } else {
+        renderNoResults()
+      }
+    } else {
+      throw Error('Unexpected response')
+    }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 initMenu()
+
 fetchContent(params)
