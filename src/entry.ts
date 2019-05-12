@@ -16,7 +16,7 @@ const close = document.getElementById('close')
 const navigation = document.getElementById('menu-content')
 const main = document.getElementById('blog-content')
 const spinner = document.getElementById('spinner')
-const params = getParamsByPath(location.pathname)
+const params = getParamsByPath(location.pathname.replace(/\/$/, ''))
 
 function initMenu() {
   [menu, close].forEach((el) => el!.addEventListener('click', () => [menu, close, navigation, main].forEach((el) => el!.classList.toggle('active'))))
