@@ -73,10 +73,19 @@ export function getParamsByPath(path: string): WPcomParams {
     case '/2011/07/12/wordcamp-montreal-2011' === path:
     case '/2011/06/30/error-establishing-a-database-connection' === path:
     case '/2011/06/26/cleaning-up-urls' === path:
+    case '/presentations/demystifying-wordpress-theme-review' === path:
+    case '/presentations/getting-started-with-wordpress-theme-development' === path:
+    case '/presentations/fundamentals-of-wordpress-theme-development' === path:
       return {
         ...baseParams,
         slug: path.match(/[0-9a-z-%]*$/)!.shift(),
         fields: 'content,date,featured_image,title',
+      }
+    case '/presentations' === path:
+      return {
+        ...baseParams,
+        parentId: 1328,
+        type: 'page',
       }
     case /\/search\/[0-9a-z\+]/.test(path):
       return {
