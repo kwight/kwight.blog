@@ -22,17 +22,28 @@ function initMenu() {
   [menu, close].forEach((el) => el!.addEventListener('click', () => [menu, close, navigation, main].forEach((el) => el!.classList.toggle('active'))))
 }
 
-function renderContent(posts: Array<Post>) {
+function renderListContent(posts: Array<Post>) {
   if (!main) {
     return
   }
   posts.map((post: object) => {
     let article = document.createElement('wp-post')
-    article.setAttribute('view', params.slug ? 'single' : 'list')
+    article.setAttribute('view', 'list')
     article.setAttribute('post', JSON.stringify(post))
     main.appendChild(article)
   })
 }
+
+function renderSingleContent(post: Post) {
+  if (!main) {
+    return
+  }
+  let article = document.createElement('wp-post')
+  article.setAttribute('view', 'single')
+  article.setAttribute('post', JSON.stringify(post))
+  main.appendChild(article)
+}
+
 
 function renderNoResults() {
   if (!main) {
@@ -72,13 +83,20 @@ async function fetchContent(params: WPcomParams) {
 
     if (content.posts) {
       if (content.posts.length > 0) {
-        renderContent(content.posts)
+        renderListContent(content.posts)
+        return
       } else {
         renderNoResults()
+        return
       }
-    } else {
-      throw Error('Unexpected response')
     }
+
+    if (content.title) {
+      renderSingleContent(content)
+      return
+    }
+
+    throw Error('Unexpected response')
   } catch (error) {
     renderError(error)
   }
