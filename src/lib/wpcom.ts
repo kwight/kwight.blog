@@ -7,13 +7,22 @@ export interface WPcomParams {
 }
 
 export async function wpcomFetch(params: WPcomParams) {
-  const { site, path, slug, search } = params
-
+  const { site, path, slug, search, fields } = params
+  const encodedFields = fields && `fields=${encodeURIComponent(fields)}`
   let url = `https://public-api.wordpress.com/rest/v1.1/sites/${site}${path.replace(/\/$/, '')}`
-  if (slug) {
-    url = `${url}/:slug=${params.slug}`
-  } else if (search) {
-    url = `${url}/?search=${params.search}`
+
+  switch (true) {
+    case !!slug:
+      url = `${url}/slug:${params.slug}${fields && '?' + encodedFields}`
+      break
+    case !!search:
+      url = `${url}/?search=${params.search}${fields && '&' + encodedFields}`
+      break
+    case !!fields:
+      url = `${url}${fields && '?' + encodedFields}`
+      break
+    default:
+      break
   }
 
   try {

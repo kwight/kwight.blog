@@ -13,8 +13,9 @@ export function getHumanReadableTimestamp(timestamp: string): string {
 
 export function getParamsByPath(path: string): WPcomParams {
   const baseParams = {
-    site: 'kwight.blog',
+    fields: 'date,featured_image,title,URL',
     path: '/posts',
+    site: 'kwight.blog',
   }
   switch (true) {
     case '/2018/08/15/til-auto-input-yes-no-anything-to-command-prompts' === path:
@@ -72,9 +73,16 @@ export function getParamsByPath(path: string): WPcomParams {
     case '/2011/07/12/wordcamp-montreal-2011' === path:
     case '/2011/06/30/error-establishing-a-database-connection' === path:
     case '/2011/06/26/cleaning-up-urls' === path:
-      return { ...baseParams, 'slug': path.match(/[0-9a-z-%]*$/)!.shift() }
+      return {
+        ...baseParams,
+        slug: path.match(/[0-9a-z-%]*$/)!.shift(),
+        fields: 'content,date,featured_image,title',
+      }
     case /\/search\/[0-9a-z\+]/.test(path):
-      return { ...baseParams, 'search': path.match(/[0-9a-z-+%]*$/)!.shift() }
+      return {
+        ...baseParams,
+        search: path.match(/[0-9a-z-+%]*$/)!.shift(),
+      }
     case '/' === path:
     default:
       return baseParams
