@@ -1,5 +1,5 @@
-import { wpcomGetThumbnailUrl } from '../lib/wpcom'
-import { getHumanReadableTimestamp, getSecureUrl } from '../lib/util'
+import { wpcomGetThumbnailUrl } from './wpcom'
+import { getHumanReadableTimestamp, getSecureUrl } from './util'
 
 const thumbnailParams = { resize: '300,300' }
 const featuredImageParams = { resize: '1200,1200' }
