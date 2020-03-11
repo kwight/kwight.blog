@@ -81,7 +81,7 @@ export function getParamsByPath(path: string): WPcomParams {
         slug: path.match(/[0-9a-z-%]*$/)!.shift(),
         fields: 'content,date,featured_image,title',
       };
-    case '/presentations' === path:
+    case path === '/presentations':
       return {
         ...baseParams,
         parentId: 1328,
@@ -92,7 +92,7 @@ export function getParamsByPath(path: string): WPcomParams {
         ...baseParams,
         search: path.match(/[0-9a-z-+%]*$/)!.shift(),
       };
-    case '/' === path:
+    case path === '/':
     default:
       return baseParams;
   }
