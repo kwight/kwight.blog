@@ -98,11 +98,10 @@ export function getParamsByPath(path: string): WPcomParams {
   }
 }
 
-export function getSecureUrl(url: string) {
+export function getRelativeUrl(url: string) {
   try {
-    const secureUrl = new URL(url);
-    secureUrl.protocol = 'https';
-    return secureUrl.href;
+    const relativeURL = new URL(url);
+    return relativeURL.pathname;
   } catch (error) {
     return '';
   }

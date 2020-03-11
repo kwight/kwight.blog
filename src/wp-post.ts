@@ -1,5 +1,5 @@
 import { wpcomGetThumbnailUrl } from './wpcom.js';
-import { getHumanReadableTimestamp, getSecureUrl } from './util.js';
+import { getHumanReadableTimestamp, getRelativeUrl } from './util.js';
 
 const thumbnailParams = { resize: '300,300' };
 const featuredImageParams = { resize: '1200,1200' };
@@ -56,7 +56,10 @@ class WPPost extends HTMLElement {
         wpcomGetThumbnailUrl(thumbnailUrl, thumbnailParams)
       );
     }
-    this.querySelector('a')!.setAttribute('href', getSecureUrl(this.post.URL));
+    this.querySelector('a')!.setAttribute(
+      'href',
+      getRelativeUrl(this.post.URL)
+    );
     this.querySelector(
       '.post-published'
     )!.innerHTML = getHumanReadableTimestamp(this.post.date);
