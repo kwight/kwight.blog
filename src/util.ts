@@ -16,6 +16,7 @@ export function getParamsByPath(path: string): WPcomParams {
     path: '/posts',
     site: 'kwight.blog',
   };
+  // prettier-ignore
   switch (true) {
     case path === '/2018/08/15/til-auto-input-yes-no-anything-to-command-prompts':
     case path === '/2018/02/11/how-facebook-is-killing-insert-creative-income-here-and-why-i-give-money-to-amanda-palmer':
