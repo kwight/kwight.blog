@@ -1,107 +1,114 @@
-import { getParamsByPath } from './util.js'
-import { wpcomFetch, wpcomGetThumbnailUrl, WPcomParams } from './wpcom.js'
-import { Post } from './wp-post.js'
+import { getParamsByPath } from './util.js';
+import { wpcomFetch, wpcomGetThumbnailUrl, WPcomParams } from './wpcom.js';
+import { Post } from './wp-post.js';
 
 declare global {
-  interface Window { kwightBlog: any; }
+  interface Window {
+    kwightBlog: any;
+  }
 }
 
-window.kwightBlog = {}
-window.kwightBlog.wpcomFetch = wpcomFetch
-window.kwightBlog.wpcomGetThumbnailUrl = wpcomGetThumbnailUrl
-window.kwightBlog.getParamsByPath = getParamsByPath
+window.kwightBlog = {};
+window.kwightBlog.wpcomFetch = wpcomFetch;
+window.kwightBlog.wpcomGetThumbnailUrl = wpcomGetThumbnailUrl;
+window.kwightBlog.getParamsByPath = getParamsByPath;
 
-const menu = document.getElementById('menu')
-const close = document.getElementById('close')
-const navigation = document.getElementById('menu-content')
-const main = document.getElementById('blog-content')
-const spinner = document.getElementById('spinner')
-const params = getParamsByPath(location.pathname.replace(/\/$/, ''))
+const menu = document.getElementById('menu');
+const close = document.getElementById('close');
+const navigation = document.getElementById('menu-content');
+const main = document.getElementById('blog-content');
+const spinner = document.getElementById('spinner');
+const params = getParamsByPath(location.pathname.replace(/\/$/, ''));
 
 function initMenu() {
-  [menu, close].forEach((el) => el!.addEventListener('click', () => [menu, close, navigation, main].forEach((el) => el!.classList.toggle('active'))))
+  [menu, close].forEach(el =>
+    el!.addEventListener('click', () =>
+      [menu, close, navigation, main].forEach(el =>
+        el!.classList.toggle('active')
+      )
+    )
+  );
 }
 
 function renderListContent(posts: Array<Post>) {
   if (!main) {
-    return
+    return;
   }
   posts.map((post: object) => {
-    let article = document.createElement('wp-post')
-    article.setAttribute('view', 'list')
-    article.setAttribute('post', JSON.stringify(post))
-    main.appendChild(article)
-  })
+    let article = document.createElement('wp-post');
+    article.setAttribute('view', 'list');
+    article.setAttribute('post', JSON.stringify(post));
+    main.appendChild(article);
+  });
 }
 
 function renderSingleContent(post: Post) {
   if (!main) {
-    return
+    return;
   }
-  let article = document.createElement('wp-post')
-  article.setAttribute('view', 'single')
-  article.setAttribute('post', JSON.stringify(post))
-  main.appendChild(article)
+  let article = document.createElement('wp-post');
+  article.setAttribute('view', 'single');
+  article.setAttribute('post', JSON.stringify(post));
+  main.appendChild(article);
 }
-
 
 function renderNoResults() {
   if (!main) {
-    return
+    return;
   }
 
-  const noResults = document.createElement('div')
-  noResults.className = 'no-results'
+  const noResults = document.createElement('div');
+  noResults.className = 'no-results';
   noResults.innerHTML = `
     <h1>No results found.</h1>
     <p> 🤷‍♀️</p>
-  `
-  main.appendChild(noResults)
+  `;
+  main.appendChild(noResults);
 }
 
 function renderError(error: Error) {
   if (!main) {
-    return
+    return;
   }
 
-  const oops = document.createElement('div')
-  oops.className = 'error'
+  const oops = document.createElement('div');
+  oops.className = 'error';
   oops.innerHTML = `
     <h1>${error.name} 😱: ${error.message}</h1>
     <p>Oops, something went wrong. Totally <em>not our fault</em>. Please refresh to try again.</p>
-  `
-  main.appendChild(oops)
+  `;
+  main.appendChild(oops);
 }
 
 async function fetchContent(params: WPcomParams) {
   if (!main || !spinner) {
-    return
+    return;
   }
   try {
-    const content = await wpcomFetch(params)
-    spinner.classList.toggle('active')
+    const content = await wpcomFetch(params);
+    spinner.classList.toggle('active');
 
     if (content.posts) {
       if (content.posts.length > 0) {
-        renderListContent(content.posts)
-        return
+        renderListContent(content.posts);
+        return;
       } else {
-        renderNoResults()
-        return
+        renderNoResults();
+        return;
       }
     }
 
     if (content.title) {
-      renderSingleContent(content)
-      return
+      renderSingleContent(content);
+      return;
     }
 
-    throw Error('Unexpected response')
+    throw Error('Unexpected response');
   } catch (error) {
-    renderError(error)
+    renderError(error);
   }
 }
 
-initMenu()
+initMenu();
 
-fetchContent(params)
+fetchContent(params);

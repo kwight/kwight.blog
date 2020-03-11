@@ -1,14 +1,13 @@
 import { WPcomParams } from './wpcom.js';
 
 export function getHumanReadableTimestamp(timestamp: string): string {
-  return new Date(timestamp)
-    .toLocaleString(undefined, {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-    });
+  return new Date(timestamp).toLocaleString(undefined, {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+  });
 }
 
 export function getParamsByPath(path: string): WPcomParams {
@@ -16,7 +15,7 @@ export function getParamsByPath(path: string): WPcomParams {
     fields: 'date,featured_image,title,URL',
     path: '/posts',
     site: 'kwight.blog',
-  }
+  };
   switch (true) {
     case path === '/2018/08/15/til-auto-input-yes-no-anything-to-command-prompts':
     case path === '/2018/02/11/how-facebook-is-killing-insert-creative-income-here-and-why-i-give-money-to-amanda-palmer':
@@ -80,30 +79,30 @@ export function getParamsByPath(path: string): WPcomParams {
         ...baseParams,
         slug: path.match(/[0-9a-z-%]*$/)!.shift(),
         fields: 'content,date,featured_image,title',
-      }
+      };
     case '/presentations' === path:
       return {
         ...baseParams,
         parentId: 1328,
         type: 'page',
-      }
+      };
     case /\/search\/[0-9a-z\+]/.test(path):
       return {
         ...baseParams,
         search: path.match(/[0-9a-z-+%]*$/)!.shift(),
-      }
+      };
     case '/' === path:
     default:
-      return baseParams
+      return baseParams;
   }
 }
 
 export function getSecureUrl(url: string) {
   try {
-    const secureUrl = new URL(url)
-    secureUrl.protocol = 'https'
-    return secureUrl.href
+    const secureUrl = new URL(url);
+    secureUrl.protocol = 'https';
+    return secureUrl.href;
   } catch (error) {
-    return ''
+    return '';
   }
 }
