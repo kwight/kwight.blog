@@ -1,4 +1,4 @@
-import { WPcomParams } from './wpcom';
+import { WPcomParams } from './wpcom.js';
 
 export function getHumanReadableTimestamp(timestamp: string): string {
   return new Date(timestamp)

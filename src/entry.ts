@@ -1,6 +1,6 @@
-import { getParamsByPath } from './util'
-import { wpcomFetch, wpcomGetThumbnailUrl, WPcomParams } from './wpcom'
-import { Post } from './wp-post'
+import { getParamsByPath } from './util.js'
+import { wpcomFetch, wpcomGetThumbnailUrl, WPcomParams } from './wpcom.js'
+import { Post } from './wp-post.js'
 
 declare global {
   interface Window { kwightBlog: any; }
