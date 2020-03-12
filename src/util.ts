@@ -92,6 +92,11 @@ export function getParamsByPath(path: string): WPcomParams {
         ...baseParams,
         search: path.match(/[0-9a-z-+%]*$/)!.shift(),
       };
+    case path === '/contact':
+      return {
+        ...baseParams,
+        slug: path,
+      }
     case path === '':
       return baseParams;
     default:

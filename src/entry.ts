@@ -21,13 +21,11 @@ const spinner = document.getElementById('spinner');
 const params = getParamsByPath(location.pathname.replace(/\/$/, ''));
 
 function initMenu() {
-  [menu, close].forEach(el =>
-    el!.addEventListener('click', () =>
-      [menu, close, navigation, main].forEach(el =>
-        el!.classList.toggle('active')
-      )
-    )
-  );
+  [menu, close].forEach(el => el!.addEventListener('click', displayMenu));
+}
+
+function displayMenu() {
+  [menu, close, navigation, main].forEach(el => el!.classList.toggle('active'));
 }
 
 function renderListContent(posts: Array<Post>) {
@@ -81,6 +79,10 @@ function renderError(error: Error) {
 }
 
 async function fetchContent(params: WPcomParams) {
+  if (params.slug === '/contact') {
+    displayMenu();
+    delete params.slug;
+  }
   if (!main || !spinner) {
     return;
   }
