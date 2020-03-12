@@ -88,6 +88,10 @@ async function fetchContent(params: WPcomParams) {
     const content = await wpcomFetch(params);
     spinner.classList.toggle('active');
 
+    if (content.error) {
+      throw Error(content.error);
+    }
+
     if (content.posts) {
       if (content.posts.length > 0) {
         renderListContent(content.posts);

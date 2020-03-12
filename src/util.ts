@@ -92,9 +92,13 @@ export function getParamsByPath(path: string): WPcomParams {
         ...baseParams,
         search: path.match(/[0-9a-z-+%]*$/)!.shift(),
       };
-    case path === '/':
-    default:
+    case path === '':
       return baseParams;
+    default:
+      return {
+        ...baseParams,
+        path: '404',
+      };
   }
 }
 

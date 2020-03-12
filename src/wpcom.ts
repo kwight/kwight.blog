@@ -9,6 +9,12 @@ export interface WPcomParams {
 }
 
 export async function wpcomFetch(params: WPcomParams) {
+  if (params.path === '404') {
+    return {
+      error: 'page does not exist',
+    };
+  }
+
   const { fields, parentId, path, search, site, slug, type } = params;
   const encodedFields = fields && `fields=${encodeURIComponent(fields)}`;
   let url = `https://public-api.wordpress.com/rest/v1.1/sites/${site}${path.replace(
