@@ -1,3 +1,7 @@
+#menu-content li {
+    align-items: center;
+}
+
 #spinner {
     background:
         linear-gradient(217deg, rgba(250, 200, 99, .9), rgba(250, 200, 99, 0) 80%),
@@ -59,7 +63,8 @@ wp-posts.active {
 }
 
 header,
-#menu-content.active {
+#menu-content.active,
+#menu-content li {
     display: grid;
 }
 
@@ -87,8 +92,13 @@ body {
     font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
 }
 
-#masthead {
-    grid-template-columns: 1fr 1fr;
+#masthead,
+#menu-content li {
+    grid-auto-flow: column;
+}
+
+#menu-content li {
+    grid-template-columns: 60px auto;
 }
 
 svg {
@@ -126,10 +136,6 @@ body {
 body,
 #masthead h1 {
     margin: 0;
-}
-
-#menu-content svg {
-    margin-right: 15px;
 }
 
 #menu-content ul {
