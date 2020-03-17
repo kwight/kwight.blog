@@ -58,7 +58,8 @@ wp-posts.active {
     display: block;
 }
 
-header {
+header,
+#menu-content.active {
     display: grid;
 }
 
@@ -139,7 +140,8 @@ body,
     padding: 1rem;
 }
 
-#masthead {
+#masthead,
+#menu-content.active {
     place-items: center;
 }
 
