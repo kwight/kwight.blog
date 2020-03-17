@@ -44,6 +44,12 @@ a:hover {
     color: #c594c5;
 }
 
+h1 a,
+h1 a:hover,
+h1 a:visited {
+    color: inherit;
+}
+
 svg:hover,
 #menu:hover,
 #close:hover {
@@ -155,6 +161,12 @@ body,
 
 .masthead {
     position: fixed;
+}
+
+h1 a,
+h1 a:hover,
+h1 a:visited {
+    text-decoration: inherit;
 }
 
 svg {
