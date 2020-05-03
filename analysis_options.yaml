@@ -1,14 +1,22 @@
-# Defines a default set of lint rules enforced for
-# projects at Google. For details and rationale,
-# see https://github.com/dart-lang/pedantic#enabled-lints.
-include: package:pedantic/analysis_options.yaml
-
-# For lint rules and documentation, see http://dart-lang.github.io/linter/lints.
-# Uncomment to specify additional rules.
-# linter:
-#   rules:
-#     - camel_case_types
+# Based on https://github.com/rrousselGit/todos/blob/master/analysis_options.yaml
+# Reasoning behind negated rules is the same as https://github.com/passsy/dart-lint/blob/master/lib/analysis_options.yaml
 
 analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+  errors:
+    included_file_warning: ignore
+
+include: analysis_linter_rules_all.yaml
+# With all rules included, this becomes a list of only negated rules.
+linter:
+  rules:
+    always_specify_types: false
+    avoid_as: false
+    avoid_renaming_method_parameters: false
+    prefer_double_quotes: false
+    prefer_expression_function_bodies: false
+    public_member_api_docs: false
+    unnecessary_final: false
+    use_key_in_widget_constructors: false
