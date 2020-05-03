@@ -151,10 +151,6 @@ body,
   place-items: center;
 }
 
-#masthead {
-  position: fixed;
-}
-
 h1 a,
 h1 a:hover,
 h1 a:visited {
