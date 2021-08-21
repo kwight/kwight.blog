@@ -1,0 +1,107 @@
+/*
+ * Colour scheme: Oceanic Next
+ * https://github.com/mhartington/oceanic-next
+ */
+
+:root {
+   --base00: #1b2b34;
+   --base01: #343d46;
+   --base02: #4f5b66;
+   --base03: #65737e;
+   --base04: #a7adba;
+   --base05: #c0c5ce;
+   --base06: #cdd3de;
+   --base07: #d8dee9;
+   --red: #ec5f67;
+   --orange: #f99157;
+   --yellow: #fac863;
+   --green: #99c794;
+   --cyan: #5fb3b3;
+   --blue: #6699cc;
+   --purple: #c594c5;
+   --brown: #ab7967;
+}
+
+html {
+    background-color: var(--base00);
+    color: var(--base07);
+}
+
+a {
+    color: var(--blue);
+}
+
+a:hover {
+    color: var(--purple);
+}
+
+h1 a,
+h1 a:hover,
+h1 a:visited {
+    color: inherit;
+}
+
+svg {
+    fill: var(--base07);
+}
+
+svg:hover,
+#menu:hover,
+#close:hover {
+    cursor: pointer;
+}
+
+/*
+ * Typography
+ */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    line-height: calc(1.3em + (1.5 - 1.3) * ((100vw - 320px)/(1920 - 320)));
+}
+
+h1 a,
+h1 a:hover,
+h1 a:visited {
+    text-decoration: inherit;
+}
+
+/*
+ * Layout
+ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+#masthead {
+    display: grid;
+    padding: 1rem;
+    place-items: center;
+    position: fixed;
+}
+
+header {
+    grid-auto-flow: column;
+}
+
+svg {
+    height: 44px;
+}
+
+header svg {
+    justify-self: end;
+}
+
+#masthead {
+    width: 100vw;
+}
+
+svg {
+    width: 44px;
+}
