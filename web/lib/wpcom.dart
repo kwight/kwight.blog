@@ -37,3 +37,19 @@ class WPcom {
     }
   }
 }
+
+class WPcomParams {
+  WPcomParams(
+      {@required this.blog,
+      this.fields,
+      this.path,
+      this.parentId,
+      this.slug,
+      this.type});
+  final String blog;
+  String fields;
+  String path;
+  int parentId;
+  String slug;
+  String type;
+}
