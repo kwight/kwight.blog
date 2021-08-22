@@ -22,8 +22,13 @@
    --brown: #ab7967;
 }
 
-html {
+html,
+#masthead {
     background-color: var(--base00);
+}
+
+html,
+#masthead {
     color: var(--base07);
 }
 
@@ -37,7 +42,8 @@ a:hover {
 
 h1 a,
 h1 a:hover,
-h1 a:visited {
+h1 a:visited,
+.post-summary  {
     color: inherit;
 }
 
@@ -49,6 +55,10 @@ svg:hover,
 #menu:hover,
 #close:hover {
     cursor: pointer;
+}
+
+.post-summary {
+    background-color: var(--base02);
 }
 
 /*
@@ -67,6 +77,10 @@ h1 a:visited {
     text-decoration: inherit;
 }
 
+time {
+    text-transform: uppercase;
+}
+
 /*
  * Layout
  */
@@ -79,11 +93,24 @@ body {
     margin: 0;
 }
 
+img {
+    max-width: 100%;
+}
+
 #masthead {
     display: grid;
-    padding: 1rem;
     place-items: center;
     position: fixed;
+}
+
+.post-summary {
+    margin: 1rem;
+    border-radius: 0.5rem;
+}
+
+#masthead,
+.post-summary {
+    padding: .5rem 1rem;
 }
 
 header {
