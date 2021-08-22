@@ -132,3 +132,24 @@ header svg {
 svg {
     width: 44px;
 }
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    column-gap: 0.2rem;
+}
+
+.pagination a,
+.pagination .current {
+    display: block;
+    border: 1px solid var(--base01);
+    background-color: var(--base01);
+    padding: 1rem;
+}
