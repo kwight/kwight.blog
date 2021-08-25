@@ -22,14 +22,31 @@
    --brown: #ab7967;
 }
 
-html,
-#masthead {
-    background-color: var(--base00);
+/*
+ * Typography
+ */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
+    line-height: calc(1.3em + (1.5 - 1.3) * ((100vw - 320px)/(1920 - 320)));
 }
 
-html,
-#masthead {
+/*
+ * Global
+ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background-color: var(--base00);
     color: var(--base07);
+}
+
+body {
+    margin: 0;
 }
 
 a {
@@ -42,13 +59,14 @@ a:hover {
 
 h1 a,
 h1 a:hover,
-h1 a:visited,
-.post-summary  {
+h1 a:visited {
     color: inherit;
 }
 
 svg {
     fill: var(--base07);
+    height: 44px;
+    width: 44px;
 }
 
 svg:hover,
@@ -57,59 +75,34 @@ svg:hover,
     cursor: pointer;
 }
 
-.post-summary {
-    background-color: var(--base02);
+img {
+    max-width: 100%;
 }
 
 /*
- * Typography
+ * Masthead
  */
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: calc(16px + (24 - 16) * ((100vw - 320px) / (1920 - 320)));
-    line-height: calc(1.3em + (1.5 - 1.3) * ((100vw - 320px)/(1920 - 320)));
+#masthead {
+    background-color: var(--base00);
+    display: grid;
+    position: sticky;
+    top: 0;
+    width: 100vw;
 }
 
-h1 a,
-h1 a:hover,
-h1 a:visited {
-    text-decoration: inherit;
-}
+/*
+ * Post cards
+ */
 
 time {
     text-transform: uppercase;
 }
 
-/*
- * Layout
- */
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-}
-
-img {
-    max-width: 100%;
-}
-
-#masthead {
-    display: grid;
-    place-items: center;
-    position: fixed;
-}
-
 .post-summary {
     margin: 1rem;
     border-radius: 0.5rem;
-}
-
-#masthead,
-.post-summary {
+    border: 1px solid var(--base02);
     padding: .5rem 1rem;
 }
 
@@ -117,26 +110,9 @@ header {
     grid-auto-flow: column;
 }
 
-svg {
-    height: 44px;
-}
-
-header svg {
-    justify-self: end;
-}
-
-#masthead {
-    width: 100vw;
-}
-
-svg {
-    width: 44px;
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-}
+/*
+ * Post cards
+ */
 
 .pagination ul {
     list-style: none;
