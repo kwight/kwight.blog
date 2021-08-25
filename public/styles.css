@@ -32,6 +32,15 @@ body {
     line-height: calc(1.3em + (1.5 - 1.3) * ((100vw - 320px)/(1920 - 320)));
 }
 
+:root {
+    --font-xs: 0.5rem;
+    --font-s: 0.75rem;
+    --font-m: 1rem;
+    --font-l: 1.5rem;
+    -- font-xl: 3rem;
+    --svg-size: 44px;
+}
+
 /*
  * Global
  */
@@ -65,8 +74,8 @@ h1 a:visited {
 
 svg {
     fill: var(--base07);
-    height: 44px;
-    width: 44px;
+    height: var(--svg-size);
+    width: var(--svg-size);
 }
 
 svg:hover,
@@ -85,10 +94,20 @@ img {
 
 #masthead {
     background-color: var(--base00);
-    display: grid;
+    border-bottom: 1px solid var(--base01);
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 1rem;
     position: sticky;
     top: 0;
-    width: 100vw;
+}
+
+#masthead svg {
+
+}
+
+#masthead h1 {
+    font-size: var(--font-l);
 }
 
 /*
@@ -104,10 +123,6 @@ time {
     border-radius: 0.5rem;
     border: 1px solid var(--base02);
     padding: .5rem 1rem;
-}
-
-header {
-    grid-auto-flow: column;
 }
 
 /*
