@@ -49,6 +49,21 @@ body {
     box-sizing: border-box;
 }
 
+/* A declared value is needed for the following rules to apply. */
+*::-webkit-scrollbar {
+    width: revert;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--base00);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--base01);
+    border: 1px solid var(--base00);
+    border-radius: 20px;
+}
+
 html {
     background-color: var(--base00);
     color: var(--base07);
