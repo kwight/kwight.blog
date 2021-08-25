@@ -108,6 +108,7 @@ img {
  */
 
 #masthead {
+    align-items: center;
     background-color: var(--base00);
     border-bottom: 1px solid var(--base01);
     display: flex;
@@ -123,6 +124,8 @@ img {
 
 #masthead h1 {
     font-size: var(--font-l);
+    font-weight: normal;
+    margin: 0.25rem 0;
 }
 
 /*
