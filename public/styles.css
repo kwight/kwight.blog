@@ -137,28 +137,69 @@ time {
 }
 
 .post-summary {
-    margin: 1rem;
-    border-radius: 0.5rem;
     border: 1px solid var(--base02);
-    padding: .5rem 1rem;
+    border-radius: 0.5rem;
+    color: var(--base07);
+    display: block;
+    margin: 1rem;
+    padding: .1rem 1rem;
+    text-decoration: inherit;
 }
 
-/*
- * Post cards
- */
+.post-summary:hover {
+    background-color: var(--base02);
+}
+
+.post-summary h2 {
+    margin-bottom: 0.25rem;
+}
+
+.post-summary time {
+    font-size: var(--font-s);
+}
+
+.post-summary img {
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+}
+
+.pagination {
+    margin: 3rem 1rem;
+}
 
 .pagination ul {
+    column-gap: 0.25rem;
+    display: flex;
+    justify-content: center;
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
-    column-gap: 0.2rem;
 }
 
-.pagination a,
-.pagination .current {
+.pagination li {
     display: block;
     border: 1px solid var(--base01);
-    background-color: var(--base01);
     padding: 1rem;
+}
+
+.pagination a {
+    text-decoration: none;
+}
+
+.pagination li:first-child {
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.pagination li:last-child {
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.pagination .current {
+    background-color: var(--base01);
+}
+
+#license {
+    border-top: 1px solid var(--base01);
+    font-size: var(--font-s);
+    padding: 0 1rem;
 }
