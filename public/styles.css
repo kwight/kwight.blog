@@ -176,26 +176,29 @@ time {
     padding: 0;
 }
 
-.pagination li {
+.pagination a {
     display: block;
     border: 1px solid var(--base01);
     padding: 1rem;
-}
-
-.pagination a {
     text-decoration: none;
 }
 
-.pagination li:first-child {
+.pagination a:hover {
+    background-color: var(--base02);
+}
+
+.pagination a:first-child {
     border-radius: 0.5rem 0 0 0.5rem;
 }
 
-.pagination li:last-child {
+.pagination a:last-child {
     border-radius: 0 0.5rem 0.5rem 0;
 }
 
 .pagination .current {
     background-color: var(--base01);
+    color: inherit;
+    pointer-events: none;
 }
 
 #license {
