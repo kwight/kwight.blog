@@ -129,6 +129,27 @@ img {
 }
 
 /*
+ * Menu
+ */
+#menu-content {
+    display: grid;
+    height: 100vh;
+    line-height: 3;
+    place-items: center;
+}
+
+#menu-content ul {
+    padding: 0;
+}
+
+#menu-content li {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 60px auto;
+    place-items: center start;
+}
+
+/*
  * Post cards
  */
 
