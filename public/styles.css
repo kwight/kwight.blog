@@ -131,14 +131,20 @@ img {
 /*
  * Menu
  */
+.view-menu main {
+    padding: 2rem;
+}
+
+.view-menu h1 {
+    text-align: center;
+}
 #menu-content {
     display: grid;
-    height: 100vh;
-    line-height: 3;
     place-items: center;
 }
 
 #menu-content ul {
+    line-height: 3;
     padding: 0;
 }
 
