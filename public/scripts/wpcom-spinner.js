@@ -27,9 +27,9 @@ class WPcomSpinner extends HTMLElement {
                 }
                 .spinner__outer {
                     border-top-color: var(--color, gray);
-                    width: 20px;
-                    height: 20px;
-                    font-size: 20px;
+                    width: var(--size, 40px);
+                    height: var(--size, 40px);
+                    font-size: var(--size, 40px);
                 }
                 .spinner__inner {
                     width: 100%;
