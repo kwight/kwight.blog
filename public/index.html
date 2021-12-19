@@ -11,6 +11,7 @@
     <title>Kirk Wight – Blog</title>
     <script type="module" src="scripts/entry.js" defer></script>
     <script type="module" src="scripts/wp-post.js" defer></script>
+    <script type="module" src="scripts/wpcom-spinner.js" defer></script>
 </head>
 
 <body>
@@ -30,31 +31,13 @@
         </a>
     </header>
     <main>
+        <wpcom-spinner></wpcom-spinner>
         <wp-post postId="3222"></wp-post>
     </main>
     <footer id="license">
         <p>Content on this site is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative
                 Commons Attribution 4.0 International license</a>.</p>
     </footer>
-    <template id="spinner">
-        <div class="spinner">
-            <div class="spinner__outer">
-                <div class="spinner__inner">
-                </div>
-            </div>
-        </div>
-    </template>
-    <template id="wp-post">
-        <article class="wp-post">
-            <img class="featured-image">
-            <header>
-                <h1></h1>
-                <time></time>
-            </header>
-            <div class="content"></div>
-            <footer></footer>
-        </article>
-    </template>
     <template id="pagination">
         <nav class="pagination">
             <ul>
