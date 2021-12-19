@@ -9,6 +9,8 @@
     <base href="/">
     <link rel="stylesheet" href="styles.css">
     <title>Kirk Wight – Blog</title>
+    <script type="module" src="scripts/main.js" defer></script>
+    <script type="module" src="scripts/wp-post.js" defer></script>
 </head>
 
 <body>
@@ -25,92 +27,35 @@
                 <path
                     d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
             </svg>
+        </a>
     </header>
     <main>
-        <a class="post-summary" href="2021/02/27/staying-local/">
-            <article>
-                <h2>Staying local</h2>
-                <time>February 27, 2021</time>
-                <p>Sometimes I don’t feel like going all around the world on the Internet to accomplish something I can
-                    do
-                    on my local laptop.</p>
-            </article>
-        </a>
-        <a class="post-summary" href="2021/02/21/counting-down-the-time/">
-            <article>
-                <h2>Counting down the time</h2>
-                <time>February 21, 2021</time>
-                <p>Filip Hráček has created a Flutter Web app called the Human Life Counter, that allows us to enter
-                    some
-                    morbid-feeling time expectations and see a visual representation of our own remaining weeks.</p>
-            </article>
-        </a>
-        <a class="post-summary" href="2021/02/7/striving-for-boring-software-development/">
-            <article>
-                <h2>Striving for boring software development</h2>
-                <time>February 7, 2021</time>
-                <p>For a few years now, I’ve used the word “boring” as a positive yardstick for my own software
-                    development.
-                </p>
-            </article>
-        </a>
-        <a class="post-summary" href="2018/08/15/til-auto-input-yes-no-anything-to-command-prompts/">
-            <article>
-                <h2>TIL: auto-input yes/no/anything to command prompts</h2>
-                <time>August 15, 2018</time>
-                <p>Have you ever been running a script or command, and just want to easily pass “yes” to all prompts? It
-                    turns out there’s a simple command for that: yes.</p>
-            </article>
-        </a>
-        <a class="post-summary"
-            href="2018/02/11/how-facebook-is-killing-insert-creative-income-here-and-why-i-give-money-to-amanda-palmer/">
-            <article>
-                <h2>How Facebook is killing [insert creative income here], and why I give money to Amanda Palmer</h2>
-                <time>February 11, 2018</time>
-                <p>It’s a depressing day when people yearn for the old days of website traffic driving ad income, yet…
-                    here
-                    we are.</p>
-            </article>
-        </a>
-        <a class="post-summary" href="2017/10/09/installing-xdebug-on-macos-high-sierra/">
-            <article>
-                <h2>Installing Xdebug on macOS High Sierra</h2>
-                <time>October 9, 2017</time>
-                <p>With a new work computer, I’ve been lazy lately, falling into old error_log() habits since I didn’t
-                    have
-                    Xdebug set up yet.</p>
-            </article>
-        </a>
-        <a class="post-summary" href="2017/03/22/i-should-probably-blog-this/">
-            <article>
-                <h2>I should probably blog this.</h2>
-                <time>March 22, 2017</time>
-                <img src="assets/wpcom-anniversary.png" alt="">
-            </article>
-        </a>
-        <a class="post-summary" href="2016/09/03/programmers-dont-need-to-be-smart/">
-            <article>
-                <h2>Programmers don’t need to be “smart”</h2>
-                <time>September 3, 2016</time>
-                <p>I recently overheard someone say that to be a programmer, “you have to be smart”.</p>
-            </article>
-        </a>
-        <a class="post-summary" href="2016/07/22/create-react-app-and-mvps/">
-            <article>
-                <h2>Create React App and MVPs</h2>
-                <time>July 22, 2016</time>
-                <p>create-react-app is a great little tool by Facebook that allows the creation of React apps with a
-                    single
-                    command.</p>
-            </article>
-        </a>
-        <a class="post-summary" href="2016/06/25/til-node-app-deployment-with-ssl/">
-            <article>
-                <h2>TIL: Node app deployment with SSL</h2>
-                <time>June 25, 2016</time>
-                <p>Today I learned to deploy a Node app with Now by Zeit.</p>
-            </article>
-        </a>
+        <wp-post postId="3222"></wp-post>
+    </main>
+    <footer id="license">
+        <p>Content on this site is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative
+                Commons Attribution 4.0 International license</a>.</p>
+    </footer>
+    <template id="spinner">
+        <div class="spinner">
+            <div class="spinner__outer">
+                <div class="spinner__inner">
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="wp-post">
+        <article class="wp-post">
+            <img class="featured-image">
+            <header>
+                <h1></h1>
+                <time></time>
+            </header>
+            <div class="content"></div>
+            <footer></footer>
+        </article>
+    </template>
+    <template id="pagination">
         <nav class="pagination">
             <ul>
                 <a class="current">
@@ -119,25 +64,9 @@
                 <a href="/page/2">
                     <li>2</li>
                 </a>
-                <a href="/page/3">
-                    <li>3</li>
-                </a>
-                <a href="/page/4">
-                    <li>4</li>
-                </a>
-                <a href="/page/5">
-                    <li>5</li>
-                </a>
-                <a href="/page/6">
-                    <li>6</li>
-                </a>
             </ul>
         </nav>
-    </main>
-    <footer id="license">
-        <p>Content on this site is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative
-                Commons Attribution 4.0 International license</a>.</p>
-    </footer>
+    </template>
 </body>
 
 </html>

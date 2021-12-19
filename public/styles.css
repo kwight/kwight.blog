@@ -37,7 +37,7 @@ body {
     --font-s: 0.75rem;
     --font-m: 1rem;
     --font-l: 1.5rem;
-    -- font-xl: 3rem;
+    --font-xl: 3rem;
     --svg-size: 24px;
 }
 
@@ -110,16 +110,12 @@ img {
 #masthead {
     align-items: center;
     background-color: var(--base00);
-    border-bottom: 1px solid var(--base01);
+    border-bottom: 5px solid var(--base01);
     display: flex;
     justify-content: space-between;
     padding: 0.25rem 1rem;
     position: sticky;
     top: 0;
-}
-
-#masthead svg {
-
 }
 
 #masthead h1 {
@@ -160,6 +156,7 @@ img {
  */
 
 time {
+    color: var(--base05);
     text-transform: uppercase;
 }
 
@@ -260,7 +257,53 @@ time {
 }
 
 #license {
-    border-top: 1px solid var(--base01);
+    position: fixed;
+    bottom: 0;
+    background-color: var(--base00);
+    border-top: 5px solid var(--base01);
+    color: var(--base05);
     font-size: var(--font-s);
     padding: 0 1rem;
+}
+
+/*
+ * Spinner
+ */
+
+@keyframes rotate-spinner {
+    100% {
+        transform: rotate( 360deg );
+    }
+}
+
+.spinner {
+    display: inline-block;
+}
+
+.spinner__outer, .spinner__inner {
+    margin: auto;
+    box-sizing: border-box;
+    border: 0.1em solid transparent;
+    border-radius: 50%;
+    animation: 0.8s linear infinite;
+    animation-name: rotate-spinner;
+}
+
+.spinner__outer {
+    border-top-color: gray;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+}
+
+.spinner__inner {
+    width: 100%;
+    height: 100%;
+    border-top-color: gray;
+    border-right-color: gray;
+    opacity: 0.5;
+}
+
+article {
+    background-color: red;
 }
